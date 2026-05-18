@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { games } from '../data/schedule';
+import { games, standings } from '../data/schedule';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -10,7 +10,7 @@ const wins   = games.filter(g => g.result === 'W').length;
 const losses = games.filter(g => g.result === 'L').length;
 const played = wins + losses;
 ---
-<BaseLayout title="Schedule" description="Solutions Squad 2026 season schedule, game results, and standings.">
+<BaseLayout title="Schedule" description="Solutions Squad 2026 SUN COREC season schedule, results, and league standings.">
   <Header slot="header" />
 
   <!-- Page banner -->
@@ -18,7 +18,7 @@ const played = wins + losses;
     style={`background-image:url(${base}/images/background/bg3.jpg); background-size:cover; background-position:center;`}>
     <div class="container">
       <div class="dez-bnr-inr-entry">
-        <h1 class="text-white" style="font-family:'Oswald',sans-serif;">Schedule & Results</h1>
+        <h1 class="text-white" style="font-family:'Oswald',sans-serif;">Schedule & Standings</h1>
       </div>
     </div>
   </div>
@@ -37,6 +37,9 @@ const played = wins + losses;
       <!-- Season record -->
       <div class="row mb-5">
         <div class="col-lg-8 offset-lg-2">
+          <p class="text-center" style="color:#888; font-size:12px; letter-spacing:2px; text-transform:uppercase; margin-bottom:12px;">
+            2026 Spring Adult Softball · SUN COREC
+          </p>
           <div class="row text-center">
             <div class="col-4">
               <div class="p-4" style="background:#1a1a1a; border-top:4px solid var(--primary,#70e000); border-radius:4px;">
@@ -60,13 +63,13 @@ const played = wins + losses;
         </div>
       </div>
 
-      <!-- Schedule table -->
+      <!-- Solutions Squad game schedule -->
       <div class="section-head text-center text-white mb-4">
-        <h2 class="title" style="font-family:'Oswald',sans-serif;">2026 Season Schedule</h2>
+        <h2 class="title" style="font-family:'Oswald',sans-serif;">Our Games</h2>
         <div class="dez-separator-outer"><div class="dez-separator bg-primary style-skew"></div></div>
       </div>
 
-      <div class="row">
+      <div class="row mb-5">
         <div class="col-12">
           <div class="table-responsive">
             <table class="table table-dark table-hover" style="border-radius:4px; overflow:hidden;">
@@ -74,7 +77,7 @@ const played = wins + losses;
                 <tr>
                   <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#000;">Date</th>
                   <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#000;">Opponent</th>
-                  <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#000;">Location</th>
+                  <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#000;">Field</th>
                   <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#000;">Time</th>
                   <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#000; text-align:center;">Result</th>
                 </tr>
@@ -82,29 +85,24 @@ const played = wins + losses;
               <tbody>
                 {games.map(game => (
                   <tr style="border-bottom:1px solid #2a2a2a;">
-                    <td style="color:#ccc; vertical-align:middle;">{game.date}</td>
-                    <td style="color:#fff; font-weight:600; vertical-align:middle;">
-                      <i class="fa fa-users text-primary" style="margin-right:8px;"></i>{game.opponent}
-                    </td>
+                    <td style="color:#ccc; vertical-align:middle; white-space:nowrap;">{game.date}</td>
+                    <td style="color:#fff; font-weight:600; vertical-align:middle;">{game.opponent}</td>
                     <td style="vertical-align:middle;">
-                      <span class={`badge ${game.location === 'Home' ? 'bg-primary' : ''}`}
-                        style={game.location === 'Home'
-                          ? 'background:var(--primary,#70e000); color:#000; padding:4px 10px;'
-                          : game.location === 'Away'
-                            ? 'background:#394a4d; color:#edf2f4; padding:4px 10px;'
-                            : 'background:#444; color:#aaa; padding:4px 10px;'}>
-                        {game.location}
+                      <span style="background:#394a4d; color:#edf2f4; padding:3px 10px; border-radius:3px; font-size:13px; font-family:'Oswald',sans-serif; letter-spacing:1px;">
+                        {game.field}
                       </span>
                     </td>
-                    <td style="color:#aaa; vertical-align:middle;">{game.time}</td>
+                    <td style="color:#aaa; vertical-align:middle; white-space:nowrap;">{game.time}</td>
                     <td style="text-align:center; vertical-align:middle;">
-                      {game.result ? (
+                      {game.result !== null ? (
                         <div>
                           <span class="badge"
-                            style={`background:${game.result === 'W' ? 'var(--primary,#70e000)' : '#e74c3c'}; color:${game.result === 'W' ? '#000' : '#fff'}; padding:4px 12px; font-size:13px; font-weight:700;`}>
+                            style={`background:${game.result === 'W' ? 'var(--primary,#70e000)' : '#e74c3c'}; color:${game.result === 'W' ? '#000' : '#fff'}; padding:4px 12px; font-size:13px; font-weight:700; font-family:'Oswald',sans-serif;`}>
                             {game.result === 'W' ? 'WIN' : 'LOSS'}
                           </span>
-                          <div style="color:#ccc; font-size:13px; margin-top:2px;">{game.score}</div>
+                          <div style="color:#ccc; font-size:13px; margin-top:3px; font-weight:600;">
+                            {game.ssScore}–{game.oppScore}
+                          </div>
                         </div>
                       ) : (
                         <span style="color:#555; font-size:13px;">Upcoming</span>
@@ -115,6 +113,57 @@ const played = wins + losses;
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+
+      <!-- League standings -->
+      <div class="section-head text-center text-white mb-4">
+        <h2 class="title" style="font-family:'Oswald',sans-serif;">League Standings</h2>
+        <div class="dez-separator-outer"><div class="dez-separator bg-primary style-skew"></div></div>
+        <p style="color:#888; font-size:12px; letter-spacing:2px; text-transform:uppercase; margin-top:10px;">
+          Through May 3 · Updated 5/4
+        </p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <div class="table-responsive">
+            <table class="table table-dark table-hover" style="border-radius:4px; overflow:hidden;">
+              <thead style="background:#394a4d; color:#edf2f4;">
+                <tr>
+                  <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#9bacb6;">#</th>
+                  <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#9bacb6;">Team</th>
+                  <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#9bacb6; text-align:center;">W</th>
+                  <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#9bacb6; text-align:center;">L</th>
+                  <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#9bacb6; text-align:center;">Pct</th>
+                  <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#9bacb6; text-align:center;">RS</th>
+                  <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#9bacb6; text-align:center;">RA</th>
+                </tr>
+              </thead>
+              <tbody>
+                {standings.map((team, i) => {
+                  const isUs = team.team === 'Solutions Squad';
+                  const pct = team.w + team.l === 0 ? '—' : (team.w / (team.w + team.l)).toFixed(3).replace(/^0/, '');
+                  return (
+                    <tr style={`border-bottom:1px solid #2a2a2a; ${isUs ? 'background:rgba(112,224,0,0.06);' : ''}`}>
+                      <td style="color:#555; vertical-align:middle; font-size:13px;">{i + 1}</td>
+                      <td style={`vertical-align:middle; font-weight:${isUs ? '700' : '400'}; color:${isUs ? 'var(--primary,#70e000)' : '#fff'};`}>
+                        {isUs ? '★ ' : ''}{team.team}
+                      </td>
+                      <td style="text-align:center; vertical-align:middle; color:#70e000; font-weight:700;">{team.w}</td>
+                      <td style="text-align:center; vertical-align:middle; color:#e74c3c;">{team.l}</td>
+                      <td style="text-align:center; vertical-align:middle; color:#aaa; font-size:13px;">{pct}</td>
+                      <td style="text-align:center; vertical-align:middle; color:#888; font-size:13px;">{team.runsFor}</td>
+                      <td style="text-align:center; vertical-align:middle; color:#888; font-size:13px;">{team.runsAgainst}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <p style="color:#555; font-size:12px; text-align:center; margin-top:8px;">
+            RS = Runs Scored · RA = Runs Allowed · Source: <a href="https://docs.google.com/spreadsheets/d/17Bn2M285wjHFden78R6JiJpCfEhqXc6CwpiXPg1jF-4/edit" target="_blank" style="color:#9bacb6;">Official League Sheet</a>
+          </p>
         </div>
       </div>
 
