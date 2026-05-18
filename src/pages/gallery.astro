@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 const photos = [
   { src: `${base}/images/gallery/large/img1.jpg`, thumb: `${base}/images/gallery/small/img1.jpg`, caption: 'Game day lineup' },

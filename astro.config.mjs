@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://bhanleyacademic.github.io',
-  base: '/SolutionsSquad',
+  site: 'https://solutionssquad.brianhanley.dev',
   output: 'static',
 });
