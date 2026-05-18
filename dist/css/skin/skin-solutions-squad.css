@@ -1,0 +1,185 @@
+/* =====================================================
+   Solutions Squad Team Colors
+   --green:           #006400  (deep field green)
+   --green-2:         #008000  (standard green)
+   --radioactive-grass: #70e000 (primary accent — electric lime)
+   --platinum:        #edf2f4  (light/text)
+   --cool-steel:      #9bacb6  (muted accent)
+   --iron-grey:       #394a4d  (dark secondary bg)
+   ===================================================== */
+
+:root {
+  --primary:          #70e000;
+  --primary-dark:     #5bb800;
+  --secondary:        #394a4d;
+  --team-dark-green:  #006400;
+  --team-green:       #008000;
+  --team-platinum:    #edf2f4;
+  --team-steel:       #9bacb6;
+}
+
+/* ---- Primary background ---- */
+.bg-primary,
+.meet-ask-row:after,
+.dez-separator.style-skew[class*="style-"]:after,
+.dez-separator.style-skew[class*="style-"]:before,
+.dez-tilte-inner.skew-title:after,
+.date-style-2 .post-date,
+.date-style-3.skew-date .post-date,
+.date-style-3.skew-date .post-date:before,
+.overlay-primary-light:after,
+.overlay-primary-middle:after,
+.overlay-primary-dark:after,
+.widget-title:after,
+.site-button,
+.comments-area .comment-form p input[type="submit"],
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus,
+.footer-line:after,
+.testimonial-1 .quote-left:before,
+.testimonial-2 .quote-left:before,
+.site-filters .active > [class*="site-button"],
+.list-num-count > li:before,
+.date-style-4 .post-date strong,
+.date-style-3 .post-date,
+.date-style-2 .post-date,
+#myNavbar li.active a,
+.skew-angle:after,
+.header-style-6 .header-nav .nav > li.active > a,
+.header-style-6 .header-nav .nav > li:hover > a,
+.our-achievements .dez-info-has:hover,
+.blog-details .dez-info-has.skew-triangle {
+  background-color: #70e000;
+}
+
+.site-button { color: #000 !important; font-weight: 700; }
+
+.skew-triangle:after,
+.dez-head-bx.skew-triangle.right-top:after {
+  border-top-color: #70e000 !important;
+}
+.skew-triangle.left-bottom:after,
+.skew-triangle.right-bottom:after {
+  border-bottom-color: #70e000;
+}
+.dez-head-bx {
+  border-left-color: #70e000 !important;
+}
+
+/* ---- Primary hover ---- */
+.site-button:active,
+.site-button:hover,
+.site-button:focus,
+.active > .site-button,
+.bg-primary-dark,
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus,
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus,
+.sidenav .closebtn:hover,
+.sidenav .closebtn:focus {
+  background-color: #5bb800;
+}
+
+/* ---- Primary text ---- */
+a,
+.text-primary,
+.breadcrumb-row ul li a,
+.header-nav .nav > li.active > a,
+.header-nav .nav > li.current-menu-item > a,
+.header-nav .nav > li .sub-menu li a:hover,
+.header-nav .nav > li:hover > a,
+.header-nav .nav > li .mega-menu > li ul a:hover,
+.header-nav .nav > li .sub-menu li:hover > a,
+blockquote:before,
+footer a:active,
+footer a:focus,
+footer a:hover,
+footer h1 a, footer h2 a, footer h3 a, footer h4 a, footer h5 a, footer h6 a, footer p a,
+button.scroltop,
+.accordion-header .accordion-button,
+.accordion-header .accordion-button:hover,
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
+  color: #70e000;
+}
+
+/* ---- Primary border ---- */
+.navbar-toggle,
+.testimonial-4 .testimonial-pic,
+button.scroltop,
+blockquote,
+.widget_gallery li:hover {
+  border-color: #70e000;
+}
+
+/* ---- Secondary bg (iron grey) ---- */
+.bg-secondry {
+  background-color: #394a4d;
+}
+.text-secondry {
+  color: #394a4d;
+}
+
+/* ---- Scrolltop button ---- */
+button.scroltop {
+  background: #70e000;
+  color: #000;
+}
+button.scroltop:hover {
+  background: #5bb800;
+}
+
+/* ---- Header style-6 top bar curve ---- */
+.header-style-6 .top-bar-crve:before {
+  background-color: #70e000;
+}
+
+/* ---- Light Gallery ---- */
+.lg-outer .lg-toogle-thumb,
+.lg-outer .lg-toogle-thumb:hover,
+.icon-bx-xs.check-km {
+  color: #70e000;
+}
+.lg-outer .lg-thumb-item.active,
+.lg-outer .lg-thumb-item:hover {
+  border-color: #70e000;
+}
+.lg-actions .lg-next,
+.lg-actions .lg-prev,
+.lg-sub-html,
+.lg-toolbar {
+  background-color: #394a4d;
+}
+
+/* ---- Important overrides ---- */
+a.text-primary:hover { color: #5bb800 !important; }
+.text-primary,
+.site-footer .footer-bottom a:hover,
+footer .widget_services ul li a:hover { color: #70e000 !important; }
+.bg-primary { background-color: #70e000 !important; }
+a.bg-primary:focus,
+a.bg-primary:hover { background-color: #5bb800 !important; }
+
+/* ---- Outline button variant ---- */
+.site-button.button-outline-1 {
+  background: transparent;
+  border: 2px solid #70e000;
+  color: #70e000 !important;
+}
+.site-button.button-outline-1:hover {
+  background: #70e000;
+  color: #000 !important;
+}
+
+/* ---- Dark backgrounds for page sections ---- */
+.bg-gray-dark { background-color: #181818; }

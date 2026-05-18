@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { games } from '../data/schedule';
+
+const base = import.meta.env.BASE_URL;
+
+const wins   = games.filter(g => g.result === 'W').length;
+const losses = games.filter(g => g.result === 'L').length;
+const played = wins + losses;
+---
+<BaseLayout title="Schedule" description="Solutions Squad 2026 season schedule, game results, and standings.">
+  <Header slot="header" />
+
+  <!-- Page banner -->
+  <div class="dez-bnr-inr overlay-black-middle"
+    style={`background-image:url(${base}/images/background/bg3.jpg); background-size:cover; background-position:center;`}>
+    <div class="container">
+      <div class="dez-bnr-inr-entry">
+        <h1 class="text-white" style="font-family:'Oswald',sans-serif;">Schedule & Results</h1>
+      </div>
+    </div>
+  </div>
+  <div class="breadcrumb-row">
+    <div class="container">
+      <ul class="list-inline">
+        <li><a href={`${base}/`}>Home</a></li>
+        <li>Schedule</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-full content-inner bg-gray-dark">
+    <div class="container">
+
+      <!-- Season record -->
+      <div class="row mb-5">
+        <div class="col-lg-8 offset-lg-2">
+          <div class="row text-center">
+            <div class="col-4">
+              <div class="p-4" style="background:#1a1a1a; border-top:4px solid var(--primary,#70e000); border-radius:4px;">
+                <h2 class="text-primary" style="font-family:'Oswald',sans-serif; font-size:48px; margin:0;">{wins}</h2>
+                <p style="color:#aaa; margin:0; font-size:13px; letter-spacing:1px; text-transform:uppercase;">Wins</p>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="p-4" style="background:#1a1a1a; border-top:4px solid #e74c3c; border-radius:4px;">
+                <h2 style="font-family:'Oswald',sans-serif; font-size:48px; margin:0; color:#e74c3c;">{losses}</h2>
+                <p style="color:#aaa; margin:0; font-size:13px; letter-spacing:1px; text-transform:uppercase;">Losses</p>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="p-4" style="background:#1a1a1a; border-top:4px solid #888; border-radius:4px;">
+                <h2 style="font-family:'Oswald',sans-serif; font-size:48px; margin:0; color:#888;">{games.length - played}</h2>
+                <p style="color:#aaa; margin:0; font-size:13px; letter-spacing:1px; text-transform:uppercase;">Remaining</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Schedule table -->
+      <div class="section-head text-center text-white mb-4">
+        <h2 class="title" style="font-family:'Oswald',sans-serif;">2026 Season Schedule</h2>
+        <div class="dez-separator-outer"><div class="dez-separator bg-primary style-skew"></div></div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="table-responsive">
+            <table class="table table-dark table-hover" style="border-radius:4px; overflow:hidden;">
+              <thead style="background:var(--primary,#70e000); color:#000;">
+                <tr>
+                  <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#000;">Date</th>
+                  <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#000;">Opponent</th>
+                  <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#000;">Location</th>
+                  <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#000;">Time</th>
+                  <th style="font-family:'Oswald',sans-serif; letter-spacing:1px; color:#000; text-align:center;">Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                {games.map(game => (
+                  <tr style="border-bottom:1px solid #2a2a2a;">
+                    <td style="color:#ccc; vertical-align:middle;">{game.date}</td>
+                    <td style="color:#fff; font-weight:600; vertical-align:middle;">
+                      <i class="fa fa-users text-primary" style="margin-right:8px;"></i>{game.opponent}
+                    </td>
+                    <td style="vertical-align:middle;">
+                      <span class={`badge ${game.location === 'Home' ? 'bg-primary' : ''}`}
+                        style={game.location === 'Home'
+                          ? 'background:var(--primary,#70e000); color:#000; padding:4px 10px;'
+                          : game.location === 'Away'
+                            ? 'background:#394a4d; color:#edf2f4; padding:4px 10px;'
+                            : 'background:#444; color:#aaa; padding:4px 10px;'}>
+                        {game.location}
+                      </span>
+                    </td>
+                    <td style="color:#aaa; vertical-align:middle;">{game.time}</td>
+                    <td style="text-align:center; vertical-align:middle;">
+                      {game.result ? (
+                        <div>
+                          <span class="badge"
+                            style={`background:${game.result === 'W' ? 'var(--primary,#70e000)' : '#e74c3c'}; color:${game.result === 'W' ? '#000' : '#fff'}; padding:4px 12px; font-size:13px; font-weight:700;`}>
+                            {game.result === 'W' ? 'WIN' : 'LOSS'}
+                          </span>
+                          <div style="color:#ccc; font-size:13px; margin-top:2px;">{game.score}</div>
+                        </div>
+                      ) : (
+                        <span style="color:#555; font-size:13px;">Upcoming</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

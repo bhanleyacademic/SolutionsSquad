@@ -1,0 +1,55 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Official fan site for the Solutions Squad casual softball team based in Bloomington.' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title} | Solutions Squad Softball</title>
+  <meta name="description" content={description}>
+  <meta property="og:title" content={`${title} | Solutions Squad Softball`}>
+  <meta property="og:description" content={description}>
+
+  <link rel="icon" href={`${base}/favicon.ico`} type="image/x-icon">
+  <link rel="shortcut icon" type="image/x-icon" href={`${base}/favicon.png`}>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href={`${base}/css/plugins.css`}>
+  <link rel="stylesheet" href={`${base}/css/style.css`}>
+  <link rel="stylesheet" href={`${base}/css/hover.css`}>
+  <link rel="stylesheet" href={`${base}/css/skin/skin-solutions-squad.css`}>
+  <link rel="stylesheet" href={`${base}/css/templete.min.css`}>
+</head>
+<body id="bg">
+<div class="page-wraper">
+
+  <slot name="header" />
+
+  <div class="page-content">
+    <slot />
+  </div>
+
+  <slot name="footer" />
+
+  <!-- scroll to top -->
+  <button class="scroltop fa fa-chevron-up"></button>
+</div>
+
+<!-- Scripts -->
+<script is:inline src={`${base}/js/jquery.min.js`}></script>
+<script is:inline src={`${base}/plugins/bootstrap/js/bootstrap.bundle.min.js`}></script>
+<script is:inline src={`${base}/plugins/bootstrap-select/js/bootstrap-select.min.js`}></script>
+<script is:inline src={`${base}/plugins/owl-carousel/owl.carousel.js`}></script>
+<script is:inline src={`${base}/plugins/magnific-popup/magnific-popup.js`}></script>
+<script is:inline src={`${base}/plugins/masonry/masonry-4.2.2.js`}></script>
+<script is:inline src={`${base}/plugins/lightgallery/js/lightgallery-all.min.js`}></script>
+<script is:inline src={`${base}/js/custom.min.js`}></script>
+</body>
+</html>

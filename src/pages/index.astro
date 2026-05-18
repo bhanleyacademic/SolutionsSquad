@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { players } from '../data/players';
+import { games } from '../data/schedule';
+
+const base = import.meta.env.BASE_URL;
+const nextGame = games.find(g => g.result === null);
+const recentResults = games.filter(g => g.result !== null).slice(-2).reverse();
+const featuredPlayers = players.slice(0, 4);
+---
+<BaseLayout title="Home">
+  <Header slot="header" />
+
+  <!-- Hero Banner -->
+  <div class="dez-bnr-inr overlay-black-dark"
+    style={`background-image:url(${base}/images/background/bg2.jpg); background-size:cover; background-position:center; min-height:520px; display:flex; align-items:center;`}>
+    <div class="container" style="padding:100px 15px 80px;">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <span class="text-primary" style="font-family:'Oswald',sans-serif; font-size:20px; font-weight:500; letter-spacing:3px; text-transform:uppercase;">
+            Bloomington Recreational Softball
+          </span>
+          <h1 style="font-family:'Oswald',sans-serif; font-size:64px; line-height:1.1; color:#fff; font-weight:700; margin:12px 0 20px;">
+            SOLUTIONS<br><span class="text-primary">SQUAD</span>
+          </h1>
+          <p style="color:#ccc; font-size:16px; max-width:520px; margin-bottom:30px;">
+            Where casual fun meets competitive heart. We play, we laugh, we win — occasionally in that order.
+          </p>
+          <a href={`${base}/schedule`} class="site-button m-r15">See Schedule</a>
+          <a href={`${base}/roster`} class="site-button button-outline-1">Meet the Squad</a>
+        </div>
+        {nextGame && (
+          <div class="col-lg-5 d-none d-lg-block">
+            <div class="p-4" style="background:rgba(0,0,0,0.6); border:2px solid #35B494; border-radius:8px;">
+              <p class="text-primary m-0" style="font-family:'Oswald',sans-serif; font-size:13px; letter-spacing:2px; text-transform:uppercase;">Next Game</p>
+              <h3 style="color:#fff; font-family:'Oswald',sans-serif; margin:8px 0 4px;">vs. {nextGame.opponent}</h3>
+              <p style="color:#aaa; margin:0;">
+                <i class="fa fa-calendar text-primary"></i> {nextGame.date}<br>
+                <i class="fa fa-clock-o text-primary"></i> {nextGame.time}<br>
+                <i class="fa fa-map-marker text-primary"></i> {nextGame.location} · Bloomington, IN
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Results -->
+  {recentResults.length > 0 && (
+    <div class="section-full bg-black content-inner-2">
+      <div class="container">
+        <div class="section-head text-center text-white">
+          <h2 class="title" style="font-family:'Oswald',sans-serif;">Recent Results</h2>
+          <div class="dez-separator-outer"><div class="dez-separator bg-primary style-skew"></div></div>
+        </div>
+        <div class="row justify-content-center mt-4">
+          {recentResults.map(game => (
+            <div class="col-lg-5 col-md-6 mb-4">
+              <div class="p-4 text-center" style={`background:#1a1a1a; border-top:4px solid ${game.result === 'W' ? '#35B494' : '#e74c3c'}; border-radius:4px;`}>
+                <span class="badge" style={`background:${game.result === 'W' ? '#35B494' : '#e74c3c'}; font-size:14px; padding:6px 16px; letter-spacing:1px;`}>
+                  {game.result === 'W' ? 'WIN' : 'LOSS'}
+                </span>
+                <h4 style="color:#fff; font-family:'Oswald',sans-serif; margin:12px 0 4px;">vs. {game.opponent}</h4>
+                <p style="color:#35B494; font-size:28px; font-weight:700; font-family:'Oswald',sans-serif; margin:0;">{game.score}</p>
+                <p style="color:#888; margin:4px 0 0; font-size:13px;">{game.date} · {game.location}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="text-center mt-2">
+          <a href={`${base}/schedule`} class="site-button">Full Schedule & Results</a>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- Featured Players -->
+  <div class="section-full content-inner bg-gray-dark">
+    <div class="container">
+      <div class="section-head text-center text-white">
+        <h2 class="title" style="font-family:'Oswald',sans-serif;">Meet the Squad</h2>
+        <div class="dez-separator-outer"><div class="dez-separator bg-primary style-skew"></div></div>
+        <p style="color:#aaa; margin-top:12px;">A crew of passionate players who show up every week ready to compete.</p>
+      </div>
+      <div class="row">
+        {featuredPlayers.map(player => (
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
+            <div class="dez-box dez-team2">
+              <div class="dez-media dez-img-overlay2 dez-img-effect zoom">
+                <img src={player.photo} alt={player.name} style="width:100%; height:280px; object-fit:cover;">
+                <div class="overlay-bx">
+                  <div class="overlay-icon">
+                    <span class="site-button-secondry btn-effect" style="background:#35B494; color:#fff; padding:8px 20px; border-radius:4px; font-size:13px;">
+                      #{player.number}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="dez-info p-a20 border-1" style="background:#1a1a1a; border-top:3px solid #35B494;">
+                <h5 class="dez-title m-t0 m-b5">
+                  <a href={`${base}/roster`} style="color:#fff; font-family:'Oswald',sans-serif;">{player.name}</a>
+                </h5>
+                <p class="m-b0 text-primary" style="font-size:13px; letter-spacing:1px; text-transform:uppercase;">{player.position}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-2">
+        <a href={`${base}/roster`} class="site-button">Full Roster</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- About / Team Spirit Section -->
+  <div class="section-full content-inner overlay-black-middle bg-img-fix"
+    style={`background-image:url(${base}/images/background/bg4.jpg); background-size:cover; background-position:center;`}>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <h2 style="font-family:'Oswald',sans-serif; font-size:42px; color:#fff; font-weight:700;">
+            More Than Just a<br><span class="text-primary">Softball Team</span>
+          </h2>
+          <p style="color:#ccc; font-size:16px; line-height:1.8; margin-bottom:24px;">
+            Solutions Squad started in 2019 as a group of coworkers and friends who wanted an excuse to get outside. What started as casual fun has grown into a genuine community — a crew that shows up for each other on and off the field.
+          </p>
+          <p style="color:#ccc; font-size:16px; line-height:1.8; margin-bottom:32px;">
+            We play in the Bloomington Recreational Softball League every summer. Whether you're a first-timer or a seasoned player, you'll find a home here.
+          </p>
+          <a href={`${base}/about`} class="site-button">Our Story</a>
+        </div>
+        <div class="col-lg-5 offset-lg-1 d-none d-lg-block">
+          <div class="row">
+            <div class="col-6 mb-3">
+              <div class="text-center p-3" style="background:rgba(53,180,148,0.15); border:1px solid #35B494; border-radius:4px;">
+                <h2 class="text-primary" style="font-family:'Oswald',sans-serif; font-size:48px; margin:0;">2019</h2>
+                <p style="color:#aaa; margin:0; font-size:13px;">Founded</p>
+              </div>
+            </div>
+            <div class="col-6 mb-3">
+              <div class="text-center p-3" style="background:rgba(53,180,148,0.15); border:1px solid #35B494; border-radius:4px;">
+                <h2 class="text-primary" style="font-family:'Oswald',sans-serif; font-size:48px; margin:0;">12</h2>
+                <p style="color:#aaa; margin:0; font-size:13px;">Roster Players</p>
+              </div>
+            </div>
+            <div class="col-6 mb-3">
+              <div class="text-center p-3" style="background:rgba(53,180,148,0.15); border:1px solid #35B494; border-radius:4px;">
+                <h2 class="text-primary" style="font-family:'Oswald',sans-serif; font-size:48px; margin:0;">6+</h2>
+                <p style="color:#aaa; margin:0; font-size:13px;">Seasons Played</p>
+              </div>
+            </div>
+            <div class="col-6 mb-3">
+              <div class="text-center p-3" style="background:rgba(53,180,148,0.15); border:1px solid #35B494; border-radius:4px;">
+                <h2 class="text-primary" style="font-family:'Oswald',sans-serif; font-size:48px; margin:0;">1</h2>
+                <p style="color:#aaa; margin:0; font-size:13px;">League Title</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>
