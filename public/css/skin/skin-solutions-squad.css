@@ -184,9 +184,21 @@ a.bg-primary:hover { background-color: #5bb800 !important; }
 /* ---- Dark backgrounds for page sections ---- */
 .bg-gray-dark { background-color: #181818; }
 
+/* ---- Page background — eliminates white gap above footer ---- */
+body, .page-wraper { background-color: #111; }
+
 /* ---- Sticky header always stays dark ---- */
 .site-header .main-bar,
 .sticky-header.is-fixed .main-bar,
 .sticky-header.is-fixed .header-bar {
   background-color: #111 !important;
+}
+
+/* ---- Nav links stay white when sticky ---- */
+.sticky-header.is-fixed .header-nav .nav > li > a {
+  color: #edf2f4 !important;
+}
+.sticky-header.is-fixed .header-nav .nav > li.active > a,
+.sticky-header.is-fixed .header-nav .nav > li:hover > a {
+  color: #000 !important;
 }
