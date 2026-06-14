@@ -22,10 +22,10 @@ export const games: Game[] = [
   // Week 5 — May 17
   { date: 'May 17',  opponent: 'Tailgaters',                       field: 'F4', time: '7:20 PM', result: 'L', ssScore: 2,  oppScore: 12 },
   // Week 6 — May 24: No Games (Memorial Day Weekend)
-  // Week 7 — May 31
-  { date: 'May 31',  opponent: 'Splatter-Up',                      field: 'F4', time: '6:15 PM', result: null, ssScore: null, oppScore: null },
+  // Week 7 — May 31 (forfeit loss)
+  { date: 'May 31',  opponent: 'Splatter-Up',                      field: 'F4', time: '6:15 PM', result: 'L', ssScore: 0,    oppScore: 7    },
   // Week 8 — Jun 7
-  { date: 'Jun 7',   opponent: 'Hot Diggity Dashers',              field: 'F4', time: '7:20 PM', result: null, ssScore: null, oppScore: null },
+  { date: 'Jun 7',   opponent: 'Hot Diggity Dashers',              field: 'F4', time: '7:20 PM', result: 'L', ssScore: null, oppScore: null },
   // Week 9 — Jun 14
   { date: 'Jun 14',  opponent: 'Bru Crew',                         field: 'F4', time: '5:10 PM', result: null, ssScore: null, oppScore: null },
   // Week 10 — Jun 21: No Games (Father's Day)
@@ -44,16 +44,16 @@ export interface TeamStanding {
 }
 
 export const standings: TeamStanding[] = [
-  { team: 'Tailgaters',                      w: 5, l: 0, runsFor: 59, runsAgainst: 9  },
-  { team: 'Bru Crew',                        w: 4, l: 0, runsFor: 58, runsAgainst: 5  },
-  { team: 'North Central Church of Christ',  w: 4, l: 0, runsFor: 49, runsAgainst: 15 },
-  { team: 'Lotus Volunteers',                w: 3, l: 1, runsFor: 39, runsAgainst: 16 },
-  { team: 'Bats Hit Crazy',                  w: 3, l: 2, runsFor: 49, runsAgainst: 43 },
-  { team: 'Proper Bunts',                    w: 2, l: 2, runsFor: 17, runsAgainst: 47 },
-  { team: 'Splatter-Up',                     w: 2, l: 3, runsFor: 27, runsAgainst: 40 },
-  { team: 'Sunday Starters',                 w: 1, l: 3, runsFor: 31, runsAgainst: 31 },
-  { team: 'Mad Batters',                     w: 1, l: 3, runsFor: 25, runsAgainst: 36 },
-  { team: 'Dewey Decimators',                w: 1, l: 3, runsFor: 14, runsAgainst: 45 },
-  { team: 'Hot Diggity Dashers',             w: 0, l: 4, runsFor: 14, runsAgainst: 50 },
-  { team: 'Solutions Squad',                 w: 0, l: 5, runsFor: 11, runsAgainst: 56 },
+  { team: 'Tailgaters',                      w: 6, l: 0, runsFor: 59, runsAgainst: 9  },
+  { team: 'Bru Crew',                        w: 6, l: 0, runsFor: 58, runsAgainst: 11 },
+  { team: 'North Central Church of Christ',  w: 5, l: 0, runsFor: 49, runsAgainst: 15 },
+  { team: 'Lotus Volunteers',                w: 3, l: 2, runsFor: 39, runsAgainst: 22 },
+  { team: 'Bats Hit Crazy',                  w: 4, l: 3, runsFor: 49, runsAgainst: 63 },
+  { team: 'Splatter-Up',                     w: 3, l: 3, runsFor: 27, runsAgainst: 40 },
+  { team: 'Sunday Starters',                 w: 3, l: 3, runsFor: 31, runsAgainst: 40 },
+  { team: 'Proper Bunts',                    w: 2, l: 3, runsFor: 17, runsAgainst: 54 },
+  { team: 'Mad Batters',                     w: 2, l: 5, runsFor: 25, runsAgainst: 60 },
+  { team: 'Dewey Decimators',                w: 1, l: 5, runsFor: 14, runsAgainst: 66 },
+  { team: 'Hot Diggity Dashers',             w: 1, l: 5, runsFor: 14, runsAgainst: 66 },
+  { team: 'Solutions Squad',                 w: 0, l: 7, runsFor: 11, runsAgainst: 77 },
 ];

@@ -101,7 +101,7 @@ const played = wins + losses;
                             {game.result === 'W' ? 'WIN' : 'LOSS'}
                           </span>
                           <div style="color:#ccc; font-size:13px; margin-top:3px; font-weight:600;">
-                            {game.ssScore}–{game.oppScore}
+                            {game.ssScore !== null ? `${game.ssScore}–${game.oppScore}` : '—'}
                           </div>
                         </div>
                       ) : (
@@ -121,7 +121,7 @@ const played = wins + losses;
         <h2 class="title" style="font-family:'Oswald',sans-serif;">League Standings</h2>
         <div class="dez-separator-outer"><div class="dez-separator bg-primary style-skew"></div></div>
         <p style="color:#888; font-size:12px; letter-spacing:2px; text-transform:uppercase; margin-top:10px;">
-          Through May 17 · Updated 5/18
+          Through Jun 7 · Updated 6/14
         </p>
       </div>
 
